@@ -3,62 +3,99 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Instead Of — what India's public money could have built</title>
-<meta name="description" content="Pick a documented case of public money lost, misspent, or spent on questionable priorities in India — then decide what it could have built instead.">
+<title>People's Choice</title>
+<meta name="description" content="Select a real corruption case and see how that money could have been used to build a healthier, stronger and more equal India.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header class="hero">
-  <div class="hero-inner">
-    <p class="eyebrow">A public-money calculator &middot; India</p>
-    <h1>Instead of that,<br>it could have built <span class="accent">this</span>.</h1>
-    <p class="hero-sub">Pick a documented case. See what the same money buys in roads, clinics, schools.</p>
-  </div>
-</header>
+<div class="page">
 
-<main>
-  <section class="picker" id="picker" aria-label="Choose a case">
-    <h2 class="section-title">Choose a case</h2>
-    <div class="case-grid" id="caseGrid"><!-- injected --></div>
-  </section>
-
-  <section class="builder" id="builder" hidden>
-    <div class="budget-bar" id="budgetBar">
-      <div class="budget-bar-inner">
-        <div class="budget-case">
-          <span class="budget-eyebrow">Rebuilding the cost of</span>
-          <span class="budget-case-name" id="budgetCaseName">—</span>
-        </div>
-        <div class="budget-figures">
-          <div class="budget-figure">
-            <span class="budget-label">Remaining</span>
-            <span class="budget-value" id="budgetRemaining">₹0</span>
-          </div>
-          <button class="reset-btn" id="resetBtn" type="button">Reset</button>
-        </div>
+  <nav class="nav">
+    <div class="nav-brand">
+      <span class="nav-logo">🌿</span>
+      <div class="nav-brand-text">
+        <span class="nav-title">People's Choice</span>
+        <span class="nav-tagline">Redirect Corruption. Build a Better India.</span>
       </div>
-      <div class="budget-track"><div class="budget-fill" id="budgetFill"></div></div>
+    </div>
+    <div class="nav-right">
+      <a class="nav-link is-active" href="#">Home</a>
+      <a class="nav-link" href="#">About</a>
+      <a class="nav-link" href="#">Impact</a>
+      <a class="nav-link" href="#">Share</a>
+      <button class="nav-country" type="button">🇮🇳 India <span class="chev">⌄</span></button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-col">
+      <h1>From Corruption<br>to a <span class="accent">Brighter India</span></h1>
+      <p class="hero-sub">Select a real corruption case and see how that money could have been used to build a healthier, stronger and more equal India.</p>
+      <span class="badge-pill">💡 Same money. A different tomorrow.</span>
     </div>
 
-    <div class="case-detail" id="caseDetail"><!-- injected --></div>
+    <div class="hero-col">
+      <label class="field-label" for="caseSelect">1. Select a corruption case</label>
+      <select id="caseSelect" class="case-select"></select>
 
-    <h2 class="section-title">Build something instead</h2>
-    <div class="build-grid" id="buildGrid"><!-- injected --></div>
+      <div class="loss-block">
+        <span class="loss-label">Estimated Loss to Public Exchequer
+          <a class="info-icon" id="infoIcon" href="#" target="_blank" rel="noopener" title="Source">ⓘ</a>
+        </span>
+        <span class="loss-value" id="lossValue">₹0 Crore</span>
+        <span class="loss-usd" id="lossUsd"></span>
+      </div>
+    </div>
 
-    <div class="tally" id="tally" hidden>
-      <h3>What you've built so far</h3>
-      <ul id="tallyList"></ul>
+    <div class="hero-col quote-col">
+      <div class="quote-card">
+        <span class="quote-mark">“</span>
+        <p class="quote-text">This money could have built hospitals, schools, roads and opportunities for millions, not private fortunes.</p>
+        <span class="quote-attr">— A Better India is Possible</span>
+      </div>
     </div>
   </section>
-</main>
 
-<footer class="site-footer">
-  <p>Not a campaign for any party — cases span the political spectrum. Every figure links its source.</p>
-</footer>
+  <section class="section2-head">
+    <div>
+      <h2>2. Choose what could have been built</h2>
+      <p>Select multiple items to see how this amount could have been used for the people of India.</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat">
+        <span class="stat-label">Selected Items</span>
+        <span class="stat-value" id="selectedCount">0</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Total Value</span>
+        <span class="stat-value" id="totalValue">₹0 Crore</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="items-grid" id="itemsGrid"><!-- injected --></div>
+
+  <div class="cta-block">
+    <button class="cta-btn" id="ctaBtn" type="button" disabled>See the Impact →</button>
+    <p class="cta-hint" id="ctaHint">Select one or more items to continue</p>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <span>People's Choice</span>
+      <span class="footer-sub">Real Numbers. Real Possibilities.</span>
+    </div>
+    <div class="footer-links">
+      <a href="#">↗ Share</a>
+      <a href="#">❤ A Brighter India</a>
+    </div>
+  </footer>
+
+</div>
 
 <script src="data.js"></script>
 <script src="app.js"></script>
