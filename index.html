@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instead Of — what India's public money could have built</title>
+<meta name="description" content="Pick a documented case of public money lost, misspent, or spent on questionable priorities in India — then decide what it could have built instead.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">A public-money calculator &middot; India</p>
+    <h1>Instead of that,<br>it could have built <span class="accent">this</span>.</h1>
+    <p class="hero-sub">Pick a documented case. See what the same money buys in roads, clinics, schools.</p>
+  </div>
+</header>
+
+<main>
+  <section class="picker" id="picker" aria-label="Choose a case">
+    <h2 class="section-title">Choose a case</h2>
+    <div class="case-grid" id="caseGrid"><!-- injected --></div>
+  </section>
+
+  <section class="builder" id="builder" hidden>
+    <div class="budget-bar" id="budgetBar">
+      <div class="budget-bar-inner">
+        <div class="budget-case">
+          <span class="budget-eyebrow">Rebuilding the cost of</span>
+          <span class="budget-case-name" id="budgetCaseName">—</span>
+        </div>
+        <div class="budget-figures">
+          <div class="budget-figure">
+            <span class="budget-label">Remaining</span>
+            <span class="budget-value" id="budgetRemaining">₹0</span>
+          </div>
+          <button class="reset-btn" id="resetBtn" type="button">Reset</button>
+        </div>
+      </div>
+      <div class="budget-track"><div class="budget-fill" id="budgetFill"></div></div>
+    </div>
+
+    <div class="case-detail" id="caseDetail"><!-- injected --></div>
+
+    <h2 class="section-title">Build something instead</h2>
+    <div class="build-grid" id="buildGrid"><!-- injected --></div>
+
+    <div class="tally" id="tally" hidden>
+      <h3>What you've built so far</h3>
+      <ul id="tallyList"></ul>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>Not a campaign for any party — cases span the political spectrum. Every figure links its source.</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
