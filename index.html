@@ -31,69 +31,134 @@
     </div>
   </nav>
 
-  <section class="hero">
-    <div class="hero-col">
-      <h1>From Corruption<br>to a <span class="accent">Brighter India</span></h1>
-      <p class="hero-sub">Select a real corruption case and see how that money could have been used to build a healthier, stronger and more equal India.</p>
-      <span class="badge-pill">💡 Same money. A different tomorrow.</span>
-    </div>
-
-    <div class="hero-col">
-      <label class="field-label" for="caseSelect">1. Select a corruption case</label>
-      <select id="caseSelect" class="case-select"></select>
-
-      <div class="loss-block">
-        <span class="loss-label">Estimated Loss to Public Exchequer
-          <a class="info-icon" id="infoIcon" href="#" target="_blank" rel="noopener" title="Source">ⓘ</a>
-        </span>
-        <span class="loss-value" id="lossValue">₹0 Crore</span>
-        <span class="loss-usd" id="lossUsd"></span>
+  <div id="selectionView">
+    <section class="hero">
+      <div class="hero-col">
+        <h1>From Corruption<br>to a <span class="accent">Brighter India</span></h1>
+        <p class="hero-sub">Select a real corruption case and see how that money could have been used to build a healthier, stronger and more equal India.</p>
+        <span class="badge-pill">💡 Same money. A different tomorrow.</span>
       </div>
-    </div>
 
-    <div class="hero-col quote-col">
-      <div class="quote-card">
-        <span class="quote-mark">“</span>
-        <p class="quote-text">This money could have built hospitals, schools, roads and opportunities for millions, not private fortunes.</p>
-        <span class="quote-attr">— A Better India is Possible</span>
+      <div class="hero-col">
+        <label class="field-label" for="caseSelect">1. Select a corruption case</label>
+        <select id="caseSelect" class="case-select"></select>
+
+        <div class="loss-block">
+          <span class="loss-label">Estimated Loss to Public Exchequer
+            <a class="info-icon" id="infoIcon" href="#" target="_blank" rel="noopener" title="Source">ⓘ</a>
+          </span>
+          <span class="loss-value" id="lossValue">₹0 Crore</span>
+          <span class="loss-usd" id="lossUsd"></span>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <section class="section2-head">
-    <div>
-      <h2>2. Choose what could have been built</h2>
-      <p>Select multiple items to see how this amount could have been used for the people of India.</p>
-    </div>
-    <div class="stat-card">
+      <div class="hero-col quote-col">
+        <div class="quote-card">
+          <span class="quote-mark">“</span>
+          <p class="quote-text">This money could have built hospitals, schools, roads and opportunities for millions, not private fortunes.</p>
+          <span class="quote-attr">— A Better India is Possible</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section2-head">
+      <div>
+        <h2>2. Choose what could have been built</h2>
+        <p>Select multiple items to see how this amount could have been used for the people of India.</p>
+      </div>
+    </section>
+
+    <div class="stat-card sticky-stats">
       <div class="stat">
-        <span class="stat-label">Selected Items</span>
-        <span class="stat-value" id="selectedCount">0</span>
+        <span class="stat-label">Corruption Value</span>
+        <span class="stat-value" id="corruptionValueStat">₹0 Crore</span>
       </div>
       <div class="stat">
-        <span class="stat-label">Total Value</span>
+        <span class="stat-label">Amount Spent</span>
         <span class="stat-value" id="totalValue">₹0 Crore</span>
       </div>
     </div>
-  </section>
 
-  <div class="items-grid" id="itemsGrid"><!-- injected --></div>
+    <div class="items-grid" id="itemsGrid"><!-- injected --></div>
 
-  <div class="cta-block">
-    <button class="cta-btn" id="ctaBtn" type="button" disabled>See the Impact →</button>
-    <p class="cta-hint" id="ctaHint">Select one or more items to continue</p>
+    <div class="cta-block">
+      <button class="cta-btn" id="ctaBtn" type="button" disabled>See the Impact →</button>
+      <p class="cta-hint" id="ctaHint">Select one or more items to continue</p>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-brand">
+        <span>People's Choice</span>
+        <span class="footer-sub">Real Numbers. Real Possibilities.</span>
+      </div>
+      <div class="footer-links">
+        <a href="#">↗ Share</a>
+        <a href="#">❤ A Brighter India</a>
+      </div>
+    </footer>
   </div>
 
-  <footer class="footer">
-    <div class="footer-brand">
-      <span>People's Choice</span>
-      <span class="footer-sub">Real Numbers. Real Possibilities.</span>
+  <div id="impactView" hidden>
+    <button class="back-btn" id="backBtn" type="button">← Back to Selection</button>
+
+    <section class="impact-banner">
+      <img class="impact-banner-img" id="impactBannerImg" src="" alt="">
+      <div class="impact-banner-scrim"></div>
+      <div class="impact-banner-text">
+        <h1>Real People. <span class="accent">Real Change.</span></h1>
+        <p class="impact-banner-sub">Here's what <span class="accent" id="impactAmountInline">₹0 Crore</span> can do for India.</p>
+        <p class="impact-banner-body">This is the impact of your selection — not just numbers, but real lives, stronger communities, and a brighter tomorrow.</p>
+      </div>
+      <div class="impact-stat-panel">
+        <span class="stat-label">Your Selected Amount</span>
+        <span class="impact-amount" id="impactAmount">₹0 Crore</span>
+        <span class="loss-usd" id="impactUsd"></span>
+        <div class="impact-mini-stats">
+          <div class="impact-mini-stat">
+            <span class="mini-icon">☰</span>
+            <div>
+              <span class="mini-label">Items Selected</span>
+              <span class="mini-value">8</span>
+            </div>
+          </div>
+          <div class="impact-mini-stat">
+            <span class="mini-icon">👥</span>
+            <div>
+              <span class="mini-label">Estimated People Benefited</span>
+              <span class="mini-value" id="peopleBenefited">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section2-head">
+      <div>
+        <h2>The Impact You Created</h2>
+        <p>From classrooms to clean water, here's what this money can build across India.</p>
+      </div>
+      <div class="view-toggle">
+        <button type="button" class="view-btn is-active">📊 Impact View</button>
+        <button type="button" class="view-btn">📍 Map View</button>
+      </div>
+    </section>
+
+    <div class="impact-grid" id="impactGrid"><!-- injected --></div>
+
+    <div class="impact-bottom-bar">
+      <div class="impact-bottom-left">
+        <span class="sprout-icon">🌱</span>
+        <div>
+          <span class="impact-bottom-title">This is the power of people's choice.</span>
+          <span class="impact-bottom-sub">When corruption is stopped, opportunities grow.</span>
+        </div>
+      </div>
+      <div class="impact-bottom-actions">
+        <button class="btn-outline" type="button">⇄ Share Your Impact</button>
+        <button class="btn-fill" id="restartBtn" type="button">↻ Start a New Selection</button>
+      </div>
     </div>
-    <div class="footer-links">
-      <a href="#">↗ Share</a>
-      <a href="#">❤ A Brighter India</a>
-    </div>
-  </footer>
+  </div>
 
 </div>
 

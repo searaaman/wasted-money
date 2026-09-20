@@ -165,3 +165,121 @@ const BUILD_ITEMS = [
     img: wikimediaImg("Computer Lab - SRMPS - Shri Ramswaroop Memorial Public School.jpg", 700),
   },
 ];
+
+// Impact page: a fixed 8-category illustrative breakdown, defined at the
+// reference amount below (matches the 2G case, ₹1,76,000 crore) and scaled
+// proportionally for whichever case is actually selected — the reference
+// design's own numbers don't derive from BUILD_ITEMS unit costs (100,000
+// classrooms at ₹20cr each would be ₹20 lakh crore, far past any real case
+// here), so they're a narrative illustration tied to that one amount, not a
+// literal tally of per-unit prices. Scaling keeps it honest for smaller cases
+// instead of showing impossible quantities.
+const IMPACT_REFERENCE_AMOUNT = 176000 * CR;
+const IMPACT_REFERENCE_PEOPLE_BENEFITED = 3.4 * CR;
+
+const IMPACT_CATEGORIES = [
+  {
+    id: "education",
+    badgeIcon: "📖",
+    badgeLabel: "Education",
+    qty: 100000,
+    unitLabel: "Modern Classrooms",
+    subLabel: "For {n} students",
+    subN: 1 * CR,
+    desc: "Well-equipped classrooms with smart boards, furniture and learning resources.",
+    peopleBenefited: 1 * CR,
+    peopleCaption: "Students get better education",
+    img: wikimediaImg("Tamil Nadu school kids.jpg", 700),
+  },
+  {
+    id: "healthcare",
+    badgeIcon: "➕",
+    badgeLabel: "Healthcare",
+    qty: 400,
+    unitLabel: "Multi-speciality Hospitals",
+    subLabel: "For {n} people",
+    subN: 2 * CR,
+    desc: "Modern hospitals with advanced equipment, ICUs and trained medical staff.",
+    peopleBenefited: 2 * CR,
+    peopleCaption: "People get access to quality healthcare",
+    img: wikimediaImg("Nagpur Government Medical College and Hospital.jpg", 700),
+  },
+  {
+    id: "water",
+    badgeIcon: "💧",
+    badgeLabel: "Clean Water",
+    qty: 2000,
+    unitLabel: "Clean Water Projects",
+    subLabel: "For {n} people",
+    subN: 50 * 1e5,
+    desc: "Safe drinking water systems with treatment plants and distribution networks.",
+    peopleBenefited: 50 * 1e5,
+    peopleCaption: "People get clean and safe drinking water",
+    img: wikimediaImg("Hand-operated water pump in Mahabalipuram.jpg", 700),
+  },
+  {
+    id: "infra",
+    badgeIcon: "🏗️",
+    badgeLabel: "Infrastructure",
+    qty: 1000,
+    unitLabel: "km National Highways",
+    subLabel: "Better connectivity for millions",
+    subN: null,
+    desc: "Modern 4-lane highways with safety features, bridges and service facilities.",
+    peopleBenefited: 1.5 * CR,
+    peopleCaption: "People benefit from improved connectivity",
+    img: wikimediaImg("Drone view of a national highway in India.png", 700),
+  },
+  {
+    id: "transport",
+    badgeIcon: "🚇",
+    badgeLabel: "Public Transport",
+    qty: 10,
+    unitLabel: "km Metro Rail",
+    subLabel: "For {n} daily commuters",
+    subN: 10 * 1e5,
+    desc: "Modern metro rail with stations and basic infrastructure.",
+    peopleBenefited: 10 * 1e5,
+    peopleCaption: "Daily commuters get faster, safer travel",
+    img: wikimediaImg("Delhi Metro train red line at Shaheed Sthal metro station.jpg", 700),
+  },
+  {
+    id: "housing",
+    badgeIcon: "🏠",
+    badgeLabel: "Rural Development",
+    qty: 1000,
+    unitLabel: "Rural Homes",
+    subLabel: "For {n} families",
+    subN: 1000,
+    desc: "Safe and durable homes with basic amenities like electricity, water and sanitation.",
+    peopleBenefited: 5000,
+    peopleCaption: "People get a safer place to live",
+    img: wikimediaImg("Rural india house in Maharashtra.jpg", 700),
+  },
+  {
+    id: "sanitation",
+    badgeIcon: "🚽",
+    badgeLabel: "Sanitation",
+    qty: 10000,
+    unitLabel: "Public Toilets",
+    subLabel: "For cleaner, healthier communities",
+    subN: null,
+    desc: "Well-maintained toilets in rural and urban areas to improve hygiene and public health.",
+    peopleBenefited: 50 * 1e5,
+    peopleCaption: "People get access to proper sanitation",
+    img: wikimediaImg("Temporary public toilets 2 (2731611990).jpg", 700),
+  },
+  {
+    id: "digital",
+    badgeIcon: "💻",
+    badgeLabel: "Digital Education",
+    qty: 1000,
+    unitLabel: "Digital Learning Labs",
+    subLabel: "For {n} students",
+    subN: 10 * 1e5,
+    desc: "Computer labs with internet access, devices and digital learning resources.",
+    peopleBenefited: 10 * 1e5,
+    peopleCaption: "Students gain digital skills for the future",
+    img: wikimediaImg("Computer Lab - SRMPS - Shri Ramswaroop Memorial Public School.jpg", 700),
+  },
+];

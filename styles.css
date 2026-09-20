@@ -106,6 +106,12 @@ button { font-family: inherit; cursor: pointer; }
 .stat-label { font-size: 11.5px; color: var(--text-faint); }
 .stat-value { font-size: 20px; font-weight: 800; color: var(--green); font-variant-numeric: tabular-nums; }
 
+.sticky-stats {
+  position: sticky; top: 0; z-index: 8; margin-top: 14px;
+  background: rgba(22,31,26,0.92); backdrop-filter: blur(8px);
+  width: fit-content;
+}
+
 /* ---------- items grid ---------- */
 .items-grid {
   margin-top: 24px;
@@ -166,6 +172,95 @@ button { font-family: inherit; cursor: pointer; }
 .footer-links { display: flex; gap: 20px; font-size: 13px; color: var(--text-soft); }
 .footer-links a:hover { color: var(--green); }
 
+/* ---------- impact view ---------- */
+.back-btn {
+  margin-top: 18px; background: var(--surface); border: 1px solid var(--border); color: var(--text-soft);
+  border-radius: 10px; padding: 9px 16px; font-size: 13px; font-weight: 600;
+}
+.back-btn:hover { color: var(--text); border-color: var(--text-soft); }
+
+.impact-banner {
+  margin-top: 16px; position: relative; border-radius: 20px; overflow: hidden;
+  min-height: 230px; display: grid; grid-template-columns: 1.4fr 1fr;
+}
+.impact-banner-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.impact-banner-scrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(8,12,10,0.92) 0%, rgba(8,12,10,0.75) 45%, rgba(8,12,10,0.15) 75%, transparent 100%);
+}
+.impact-banner-text {
+  position: relative; padding: 32px; display: flex; flex-direction: column; gap: 12px; justify-content: center; max-width: 560px;
+}
+.impact-banner-text h1 { font-size: 32px; font-weight: 800; color: var(--text); }
+.impact-banner-sub { font-size: 17px; font-weight: 600; color: var(--text); }
+.impact-banner-body { font-size: 13.5px; color: var(--text-soft); line-height: 1.55; max-width: 46ch; }
+
+.impact-stat-panel {
+  position: relative; align-self: center; justify-self: end; margin: 20px;
+  background: rgba(22,31,26,0.94); border: 1px solid var(--border); border-radius: 16px;
+  padding: 20px 22px; display: flex; flex-direction: column; gap: 4px; min-width: 260px;
+}
+.impact-amount { font-size: 30px; font-weight: 800; color: var(--green); font-variant-numeric: tabular-nums; }
+.impact-mini-stats { display: flex; gap: 18px; margin-top: 14px; }
+.impact-mini-stat { display: flex; align-items: center; gap: 8px; }
+.mini-icon {
+  width: 32px; height: 32px; border-radius: 9px; background: var(--surface-2);
+  display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0;
+}
+.impact-mini-stat > div { display: flex; flex-direction: column; }
+.mini-label { font-size: 10.5px; color: var(--text-faint); }
+.mini-value { font-size: 15px; font-weight: 700; color: var(--text); }
+
+.view-toggle { display: flex; gap: 8px; }
+.view-btn {
+  border: 1px solid var(--border); border-radius: 10px; padding: 9px 16px;
+  font-size: 13px; font-weight: 600; background: var(--surface); color: var(--text-soft);
+}
+.view-btn.is-active { background: var(--green); color: #08150E; border-color: var(--green); }
+
+.impact-grid {
+  margin-top: 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+}
+@media (max-width: 1080px) { .impact-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .impact-grid { grid-template-columns: 1fr; } }
+
+.impact-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  overflow: hidden; display: flex; flex-direction: column;
+}
+.impact-photo-wrap { position: relative; }
+.impact-photo { width: 100%; aspect-ratio: 4 / 2.7; object-fit: cover; background: var(--surface-2); }
+.impact-badge {
+  position: absolute; top: 10px; left: 10px; background: rgba(8,12,10,0.75);
+  color: var(--text); font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: 8px;
+}
+.impact-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 3px; }
+.impact-title { font-size: 14.5px; font-weight: 700; }
+.impact-sub { font-size: 12px; color: var(--text-soft); }
+.impact-desc { font-size: 11.5px; color: var(--text-faint); line-height: 1.45; margin-top: 4px; }
+.impact-people { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+.impact-people .mini-icon { width: 26px; height: 26px; border-radius: 7px; font-size: 12px; }
+.impact-people-count { font-size: 14px; font-weight: 700; color: var(--text); }
+.impact-people-caption { font-size: 10.5px; color: var(--text-faint); }
+
+.impact-bottom-bar {
+  margin-top: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.impact-bottom-left { display: flex; align-items: center; gap: 12px; }
+.sprout-icon { font-size: 24px; }
+.impact-bottom-title { display: block; font-size: 14px; font-weight: 700; }
+.impact-bottom-sub { display: block; font-size: 12px; color: var(--text-soft); margin-top: 2px; }
+.impact-bottom-actions { display: flex; gap: 10px; }
+.btn-outline {
+  background: none; border: 1px solid var(--border); color: var(--text-soft);
+  border-radius: 10px; padding: 10px 16px; font-size: 13px; font-weight: 600;
+}
+.btn-fill {
+  background: var(--green); color: #08150E; border: none;
+  border-radius: 10px; padding: 10px 18px; font-size: 13px; font-weight: 700;
+}
+
 /* ---------- phone tuning ---------- */
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; }
@@ -174,4 +269,11 @@ button { font-family: inherit; cursor: pointer; }
   .nav-right { gap: 16px; flex-wrap: wrap; }
   .hero h1 { font-size: 26px; }
   .section2-head { align-items: flex-start; }
+  .sticky-stats { width: 100%; }
+
+  .impact-banner { grid-template-columns: 1fr; min-height: 0; }
+  .impact-banner-img { position: static; width: 100%; height: 220px; }
+  .impact-banner-scrim { background: linear-gradient(180deg, rgba(8,12,10,0.2) 0%, rgba(8,12,10,0.95) 85%); }
+  .impact-banner-text { padding: 20px; max-width: none; }
+  .impact-stat-panel { justify-self: stretch; margin: 0 20px 20px; }
 }

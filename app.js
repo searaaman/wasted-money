@@ -1,21 +1,38 @@
 (function () {
   "use strict";
 
+  const CR = 1e7;
+
   const caseSelect = document.getElementById("caseSelect");
   const lossValue = document.getElementById("lossValue");
   const lossUsd = document.getElementById("lossUsd");
   const infoIcon = document.getElementById("infoIcon");
   const itemsGrid = document.getElementById("itemsGrid");
-  const selectedCount = document.getElementById("selectedCount");
+  const corruptionValueStat = document.getElementById("corruptionValueStat");
   const totalValue = document.getElementById("totalValue");
   const ctaBtn = document.getElementById("ctaBtn");
   const ctaHint = document.getElementById("ctaHint");
+
+  const selectionView = document.getElementById("selectionView");
+  const impactView = document.getElementById("impactView");
+  const backBtn = document.getElementById("backBtn");
+  const restartBtn = document.getElementById("restartBtn");
+  const impactGrid = document.getElementById("impactGrid");
+  const impactBannerImg = document.getElementById("impactBannerImg");
+  const impactAmount = document.getElementById("impactAmount");
+  const impactAmountInline = document.getElementById("impactAmountInline");
+  const impactUsd = document.getElementById("impactUsd");
+  const peopleBenefited = document.getElementById("peopleBenefited");
 
   let activeCase = CASES[0];
   let counts = {}; // item id -> count
 
   function crFormat(rupees) {
     return "₹" + (rupees / 1e7).toLocaleString("en-IN", { maximumFractionDigits: 2 }) + " Crore";
+  }
+
+  function countFormat(n) {
+    return Math.round(n).toLocaleString("en-IN");
   }
 
   function renderCaseOptions() {
@@ -25,6 +42,7 @@
     caseSelect.addEventListener("change", () => {
       activeCase = CASES.find((c) => c.id === caseSelect.value);
       updateCaseDisplay();
+      updateSummary();
     });
     updateCaseDisplay();
   }
@@ -90,7 +108,7 @@
       total += count * item.cost;
     });
 
-    selectedCount.textContent = selected;
+    corruptionValueStat.textContent = crFormat(activeCase.amount);
     totalValue.textContent = crFormat(total);
 
     const hasSelection = selected > 0;
@@ -99,6 +117,74 @@
       ? `${crFormat(total)} of ${crFormat(activeCase.amount)} allocated`
       : "Select one or more items to continue";
   }
+
+  // ---------- Impact view ----------
+  // The 8 categories are a fixed illustrative breakdown defined at
+  // IMPACT_REFERENCE_AMOUNT and scaled proportionally to whichever case is
+  // active, so quantities stay plausible instead of literal for every case.
+  function renderImpactGrid() {
+    const ratio = activeCase.amount / IMPACT_REFERENCE_AMOUNT;
+    impactGrid.innerHTML = "";
+    IMPACT_CATEGORIES.forEach((cat) => {
+      const qty = Math.max(1, Math.round(cat.qty * ratio));
+      const sub = cat.subN != null
+        ? cat.subLabel.replace("{n}", countFormat(cat.subN * ratio))
+        : cat.subLabel;
+      const people = Math.max(1, Math.round(cat.peopleBenefited * ratio));
+
+      const card = document.createElement("div");
+      card.className = "impact-card";
+      card.innerHTML = `
+        <div class="impact-photo-wrap">
+          <img class="impact-photo" src="${cat.img}" alt="${cat.badgeLabel}" loading="lazy">
+          <span class="impact-badge">${cat.badgeIcon} ${cat.badgeLabel}</span>
+        </div>
+        <div class="impact-body">
+          <span class="impact-title">${countFormat(qty)} ${cat.unitLabel}</span>
+          <span class="impact-sub">${sub}</span>
+          <span class="impact-desc">${cat.desc}</span>
+          <div class="impact-people">
+            <span class="mini-icon">👥</span>
+            <span class="impact-people-count">${countFormat(people)}</span>
+            <span class="impact-people-caption">${cat.peopleCaption}</span>
+          </div>
+        </div>
+      `;
+      impactGrid.appendChild(card);
+    });
+  }
+
+  function showImpactView() {
+    impactBannerImg.src = IMPACT_CATEGORIES[0].img;
+    impactAmount.textContent = crFormat(activeCase.amount);
+    impactAmountInline.textContent = crFormat(activeCase.amount);
+    impactUsd.textContent = "(≈ " + activeCase.usdApprox + ")";
+    const ratio = activeCase.amount / IMPACT_REFERENCE_AMOUNT;
+    const people = IMPACT_REFERENCE_PEOPLE_BENEFITED * ratio;
+    peopleBenefited.textContent = (people / CR).toLocaleString("en-IN", { maximumFractionDigits: 1 }) + " Crore+";
+
+    renderImpactGrid();
+
+    selectionView.hidden = true;
+    impactView.hidden = false;
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }
+
+  function showSelectionView() {
+    impactView.hidden = true;
+    selectionView.hidden = false;
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }
+
+  ctaBtn.addEventListener("click", () => {
+    if (!ctaBtn.disabled) showImpactView();
+  });
+  backBtn.addEventListener("click", showSelectionView);
+  restartBtn.addEventListener("click", () => {
+    counts = {};
+    updateSummary();
+    showSelectionView();
+  });
 
   renderCaseOptions();
   renderItems();
